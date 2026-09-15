@@ -39,7 +39,7 @@ export default function App() {
   }, []); // the empty [] means "run this only once, when the page loads"
 
   function loadProducts() {
-    fetch("/products")
+    fetch("https://product-crud-backend-axua.onrender.com/products")
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error("Could not load products:", error));
@@ -54,7 +54,7 @@ export default function App() {
       return;
     }
 
-    fetch("/products", {
+    fetch("https://product-crud-backend-axua.onrender.com/products", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newProduct)
@@ -81,7 +81,7 @@ export default function App() {
   function handleEditSubmit(event, id) {
     event.preventDefault();
 
-    fetch(`/products/${id}`, {
+    fetch(`https://product-crud-backend-axua.onrender.com/products/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editForm)
@@ -99,7 +99,7 @@ export default function App() {
     const sure = window.confirm("Remove this product?");
     if (!sure) return;
 
-    fetch(`/products/${id}`, { method: "DELETE" })
+    fetch(`https://product-crud-backend-axua.onrender.com/products/${id}`, { method: "DELETE" })
       .then(() => loadProducts())
       .catch((error) => console.error("Could not delete product:", error));
   }
